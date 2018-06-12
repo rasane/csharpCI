@@ -3,7 +3,7 @@ solution: Solutions/ClassLibrary1.sln
 
 install:
   - nuget restore Solutions/ClassLibrary1.sln
-  - nuget install NUnit.Runners -Version  -ExcludeVersion  -OutputDirectory testrunner
+  - nuget install NUnit.Runners -ExcludeVersion  -OutputDirectory testrunner
 script:
   - xbuild /p:Configuration=Release Solutions/ClassLibrary1.sln
   - mono ./testrunner/NUnit.Runners/tools/nunit-console.exe Tests/Unit/ClassLibrary1UnitTests/bin/Release/ClassLibrary1UnitTests.dll
