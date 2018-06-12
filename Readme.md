@@ -15,7 +15,7 @@ These are the features I expect of a CI semantic:
 
 |                 | Status                            | Proof                        |
 |-----------------|----------------------------------|-----------------------------|
-| Build			  |`'Naah?'`            			 |					           |
+| Build			  |`'Done [x]'`            			 |		[![Build Status](https://travis-ci.org/rasane/csharpCI.svg?branch=master)](https://travis-ci.org/rasane/csharpCI)			           |
 | Tests           |`'Naah?'`					     |					           |
 | Version         |`'Naah?'`					     |					           |
 | myget publish   |`'Naah?'`					     |					           |
