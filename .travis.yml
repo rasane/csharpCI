@@ -5,5 +5,13 @@ install:
   - nuget restore Solutions/ClassLibrary1.sln
   - nuget install NUnit.ConsoleRunner -ExcludeVersion  -OutputDirectory testrunner
 script:
-  - xbuild /p:Configuration=Release Solutions/ClassLibrary1.sln
+  - msbuild /p:Configuration=Release Solutions/ClassLibrary1.sln
   - mono ./testrunner/NUnit.ConsoleRunner/tools/nunit3-console.exe Tests/Unit/ClassLibrary1UnitTests/bin/Release/ClassLibrary1UnitTests.dll
+
+addons:
+  sonarcloud:
+    organization: "rasane-github" # the key of the org you chose at step #3
+    
+script:
+  # other script steps might be done before running the actual analysis
+  - sonar-scanner

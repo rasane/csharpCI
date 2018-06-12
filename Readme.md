@@ -1,8 +1,10 @@
 [![Build Status](https://travis-ci.org/rasane/csharpCI.svg?branch=master)](https://travis-ci.org/rasane/csharpCI)
 
+[![Sonar Status](https://sonarcloud.io/api/project_badges/measure?project=csharpCI&metric=alert_status)](https://sonarcloud.io/dashboard?id=csharpCI)
+
 # Introduction
 
-This is just a **personal** stash of code for my development practices in house to match with opensource and available platforms. I want to put this away as a means of writing a c# project with **CI semantics** built in to it.
+This is a stash of code for my development practices to match with opensource and available platforms. I want to put this away as a means of writing a c# project with **CI semantics** built in to it.
 
 # Files
 
