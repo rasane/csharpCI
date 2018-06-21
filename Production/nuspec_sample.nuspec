@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>ClassLibrary1</id>
+    <title>title</title>
+    <version>$version$</version>
+    <authors>foobar</authors>
+    <owners>foobar</owners>
+    <licenseUrl>http://www.example.com/</licenseUrl>
+    <copyright>...</copyright>
+    <projectUrl>http://www.example.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>ipsum dolorem</description>
+    <language>en-US</language>
+    <tags>nugetspec Buildscripts</tags>
+    <releaseNotes>this is a test</releaseNotes>
+    <dependencies>
+      <!-- <dependency id="psake" version="4.2.0" /> -->
+    </dependencies>
+  </metadata>
+  <files>
+     <!-- <file src="*.ps1" target="tools/" />  -->
+     <file src="**/ClassLibrary1.dll"  target="lib\net4"/>
+     <file src="**/ClassLibrary1.pdb"  target="lib\net4" />
+  </files>
+</package>

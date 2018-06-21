@@ -1,72 +1,22 @@
-#tool nuget:?package=NUnit.ConsoleRunner&version=3.4.0
-//////////////////////////////////////////////////////////////////////
-// ARGUMENTS
-//////////////////////////////////////////////////////////////////////
+#load nuget:https://www.myget.org/F/cake-contrib/api/v2?package=Cake.Recipe&prerelease
 
-var target = Argument("target", "Default");
-var configuration = Argument("configuration", "Release");
+Environment.SetVariableNames();
 
-//////////////////////////////////////////////////////////////////////
-// PREPARATION
-//////////////////////////////////////////////////////////////////////
+BuildParameters.SetParameters(context: Context,
+                            buildSystem: BuildSystem,
+                            sourceDirectoryPath: "./Solutions",
+                            testDirectoryPath:"./Tests",
+                            title: "classLibrary1",
+                            shouldGenerateDocumentation: true,
+                            shouldRunCodecov: true,
+                            shouldBuildNugetSourcePackage: true,
+                            shouldRunGitVersion: true,
+                            shouldPublishMyGet: true,
+                            nuspecFilePath: "./Production/nuspec_sample.nuspec");
 
-// Define directories.
-var buildDir = Directory("./bin") + Directory(configuration);
-var solutionFile = "./Solutions/ClassLibrary1.sln";
 
-//////////////////////////////////////////////////////////////////////
-// TASKS
-//////////////////////////////////////////////////////////////////////
+ToolSettings.SetToolSettings(context: Context);
 
-Task("Clean")
-    .Does(() =>
-{
-    CleanDirectory(buildDir);
-});
-
-Task("Restore-NuGet-Packages")
-    .IsDependentOn("Clean")
-    .Does(() =>
-{
-    NuGetRestore(solutionFile);
-});
-
-Task("Build")
-    .IsDependentOn("Restore-NuGet-Packages")
-    .Does(() =>
-{
-    if(IsRunningOnWindows())
-    {
-      // Use MSBuild
-      MSBuild(solutionFile, settings =>
-        settings.SetConfiguration(configuration));
-    }
-    else
-    {
-      // Use XBuild
-      XBuild(solutionFile, settings =>
-        settings.SetConfiguration(configuration));
-    }
-});
-
-Task("Run-Unit-Tests")
-    .IsDependentOn("Build")
-    .Does(() =>
-{
-    NUnit3("./Tests/**/bin/" + configuration + "/*Tests.dll", new NUnit3Settings {
-        NoResults = true
-        });
-});
-
-//////////////////////////////////////////////////////////////////////
-// TASK TARGETS
-//////////////////////////////////////////////////////////////////////
-
-Task("Default")
-    .IsDependentOn("Run-Unit-Tests");
-
-//////////////////////////////////////////////////////////////////////
-// EXECUTION
-//////////////////////////////////////////////////////////////////////
-
-RunTarget(target);
+BuildParameters.PrintParameters(Context);
+Build.Run();
+Build.RunNuGet();
